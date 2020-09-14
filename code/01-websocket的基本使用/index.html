@@ -40,12 +40,13 @@
         //H5已经直接提供了websocket的API，所以可以直接去使用
 
 
-        
+
         //1.创建websocket
         //url:连接的websocket服务地址
         //protocol:[可选的]，指定连接的协议
         // var Socket = new WebSocket(url,[protocol]);
-        var socket = new WebSocket('ws://echo.websocket.org');
+        // var socket = new WebSocket('ws://echo.websocket.org');
+        var socket = new WebSocket('ws://localhost:3000');
         
         //2.opmen：当和websocket服务连接成功的时候触发
         socket.addEventListener("open",function () {
