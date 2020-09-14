@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    HH哈哈
+
+
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script>
+        //连接socket服务
+        var socket = io('http://localhost:3000')
+         //data是send事件触发后，服务器发过来的数据
+        socket.on('send',data => {
+            console.log(data)
+        })
+    </script>
+</body>
+</html>
