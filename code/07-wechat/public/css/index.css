@@ -1,0 +1,408 @@
+/* 1. 由于不同浏览器，有不同的默认值，这里先全部清零，再统一
+        以*开头(星号标在大括号前，修饰了包含body所有的标签) 
+*/
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/* 2.设置html的定高100%，防止互相依赖，死循环，页面崩溃
+     因为元素高度百分比需要向上遍历父标签要找到一个定值高度才能起作用。
+    一个div块级元素没有主动为其设置宽度和高度，浏览器会为其分配可使用的最大宽度(比如全屏宽度)，
+    但是不负责分配高度，块级元素的高度是由子元素堆砌撑起来的。那么，html和body标签的高度也都是由子级元素堆砌撑起来的。
+    div的父元素是body，body的父元素是html，html的父元素是浏览器 */
+html{
+    height: 100%;
+}
+
+/* 3.标签选择器，设置body */
+body{
+    width: 100%;
+    height: 100%;
+    background-size: cover;/* 背景图像（尺寸）完全覆盖背景区域 ，默认是自适应的*/
+    background-position: center;/* 背景图像的起始位置*/
+    background-image: url(../images/bg.jpg);
+    border: 0.1px solid solid;
+    /* box-sizing: border-box; *//* 指定两个boxes接壤, */
+   /*  overflow: hidden; *//* 如果内容溢出一个元素的框;hidden:内容会被修剪，并且其余内容是不可见的。auto：如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。 */
+    overflow: scroll;/* 如果内容溢出一个元素的框;scroll:内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。 */
+   /*  filter: blur(15px); *//* 给图像设置高斯模糊（一般变成背景图的时候）。"radius"一值设定高斯函数的标准差，或者是屏幕上以多少像素融在一起， 所以值越大越模糊；默认0 */
+   /*  opacity: 0.5; *//* 设置一个div元素的透明度级别 */
+   background-repeat: repeat;/* 再重复一个块内，是否以某种形式重复当前元素（一般就是背景图，默认重复） */
+}
+
+/* 4.双冒号为伪元素；单冒号是伪类 ；给指定的标签元素特殊处理
+    ::before和::after下特有的content，用于在css渲染中向元素逻辑上的头部或尾部添加内容。
+　　这些添加不会出现在DOM中，不会改变文档内容，不可复制，仅仅是在css渲染层加入
+*/
+body::after{
+    content: '';
+    display: block;/* 显示 */
+}
+
+.login_box{
+    position: relative;/* 指定一个元素（静态的，相对的，绝对或固定）的定位 */
+    top: 100px;
+    width: 300px;
+    height: 330px;
+    margin: 0px auto;
+    padding: 50px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: #999 0px 2px 10px;/* 向 div 元素添加阴影 */
+}
+
+.login_box .avatar{
+    width: 100%;
+    height: 125px;
+}
+
+.login_box .avatar::after {
+    content: '';
+    display: block;
+    clear:both;/* 指定段落的左侧或右侧不允许浮动的元素： */
+  }
+
+  .login_box .avatar li {
+    float: left;
+    width: 60px;
+    height: 60px;
+    list-style: none;/* 设置列表项bai目样式du为不使用项目符号 ；disc : 默认值，实心圆；circle : 空心圆；square : 实心方块;decimal : 阿拉伯数字*/
+    padding: 2px;
+    box-sizing: border-box;
+  }
+
+  .login_box .avatar li.now {
+    border: 1px solid red;
+  }
+
+  .login_box .avatar li img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;/* 对图片进行剪切，保留原始比例；cover：保持原有尺寸比例。但部分内容可能被剪切。fill：默认，不保证保持原有的比例，内容拉伸填充整个内容容器。 */
+    cursor: pointer;/* 一些不同的光标:pointer:一只手;default 默认光标（通常是一个箭头）;wait刷新*/
+  }
+
+  .login_box .title {
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .login_box p {
+    font-size: 16px;
+    padding: 10px 0px;
+  }
+
+  .login_box input, .login_box button {
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  .login_box button {
+    background: #3caf36;
+    border: 0px;
+    border-radius: 2px;
+    color: #fff;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+
+  .invisible {
+    display: none;
+  }
+
+  /* 左侧用户列表 */
+  .container .user-list {
+    box-sizing: border-box;
+    padding: 15px;
+    float: left;
+    height: 100%;
+    width: 280px;
+    background: #2e3238;
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .user-list ul {
+    height: 580px;
+    overflow: auto;
+    /* scrollbar-width: 0px; */
+  }
+
+  .container .header, .container .title {
+    border-bottom: 1px solid #26292e;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+
+  .container h3 {
+    /* font-size: 10px; */
+    font-weight: normal;/* 置不同的字体粗细： normal正常*/
+    /* border-top: 1px solid #f2f2f2; */
+  }
+
+  .container .avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    display: inline-block;
+  }
+
+  /* 突变100%适用容器 */
+  .container .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;/* 对图片进行剪切，保留原始比例；cover：保持原有尺寸比例。但部分内容可能被剪切。fill：默认，不保证保持原有的比例，内容拉伸填充整个内容容器。 */
+    cursor: pointer;/* 一些不同的光标:pointer:一只手;default 默认光标（通常是一个箭头）;wait刷新*/
+  }
+
+  .info, .user .name{
+    float: right;
+    width: 190px;
+    height: 40px;
+    line-height: 40px;/* 行距 */
+    text-overflow: ellipsis;/* 定当文本溢出包含它的元素，应该发生什么 ellipsis：显示省略符号来代表被修剪的文本；string：使用给定的字符串来代表被修剪的文本。*/
+    white-space: nowrap;/* 规定段落中的文本不进行换行 */
+    overflow: hidden;
+  }
+
+  .container .user-list .user {
+    list-style: none;
+    padding: 10px 0px;
+  }
+
+  /* 聊天窗口 */
+  .container .box {
+    /* float: right; */
+    display: inline-block;
+    height: 100%;
+    width: calc(100% - 280px);
+    min-width: 420px;
+    background: #eeeeee;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+
+  /* 群聊标题居中，底部实线 */
+  .container .box .box-hd {
+    text-align: center;
+    border-bottom: 1px solid #d6d6d6;
+    padding-bottom: 10px;
+  }
+
+  /* 聊天编辑区尺寸*/
+  .container .box .box-bd {
+    width: 100%;
+    height: 443px;
+    overflow: auto;
+    padding: 10px 0px;
+  }
+
+  /* 设置滚动条样式 */
+/* 滚动条整体样式 */
+.user-list ul::-webkit-scrollbar, .container .box .box-bd::-webkit-scrollbar, .box-ft #content::-webkit-scrollbar {
+    width: 10px;
+    height: 1px;
+  }
+
+  /* 滚动条里面的小方块 */
+.user-list ul::-webkit-scrollbar-thumb, .container .box .box-bd::-webkit-scrollbar-thumb, .box-ft #content::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #8a7d7d;
+  }
+
+  /* 滚动条里面的轨道 */
+.user-list ul::-webkit-scrollbar-track, .container .box .box-bd::-webkit-scrollbar-track, .box-ft #content::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background: rgb(212, 205, 205);
+  }
+
+   /* 聊天窗口底部 */
+  .box-ft {
+    border-top: 1px solid #d6d6d6;
+    width: 100%;
+    height: 180px;
+    /* overflow: hidden; */
+  }
+
+  /* 工具栏 */
+  .box-ft .toolbar {
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  /* 图片处理 */
+  .box-ft .toolbar label {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  /* 发脓按钮 */
+  .box-ft .action {
+    float: right;
+    height: 40px;
+    font-size: 12px;
+    color: #9b9b9b;
+  }
+
+  /* 发送按钮 */
+  .box-ft .action .btn-send{
+    /* width: 40px; */
+    display: inline-block;
+    padding: 2px 25px;
+    background: #fcfcfd;
+    color: black;
+    text-decoration: none;
+    border: 1px solid #9b9b9b;
+    font-size: 16px;
+    border-radius: 3px;
+  }
+
+  /* 鼠标悬浮效果 */
+  .box-ft .action .btn-send:hover {
+    background: #726a6a;
+  }
+
+  .box-ft .content, .box-ft #content {
+    height: 120px;
+    border: 0px solid black;
+    background: #eeeeee;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    overflow: auto;
+  }
+
+  .box-ft .toolbar a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url(../images/icon.png);
+    background-size: 487px 462px;
+  }
+/* 表情 */
+  .box-ft .toolbar a.face {
+    background-position: -404px -398px;
+  }
+
+  /* 截屏 */
+  .box-ft .toolbar a.screen-cut {
+    background-position: -30px -432px;
+  }
+
+  /* 文件 */
+  .box-ft .toolbar a.file {
+    /* background-size: 487px 462px; */
+    background-position: -120px -432px;
+  }
+
+  /* 编辑区相对 */
+  .box-bd .message-box {
+    padding: 10px;
+    position: relative;
+  }
+
+  /* 打字 */
+  .box-bd .message-box .content {
+    max-width: 400px;
+    display: inline-block;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    line-height: 30px;
+    vertical-align: top;
+    background: #fff;
+    border-radius: 4px;
+    position: relative;
+    color: royalblue;
+  }
+
+  /* 添加消息框中的小三角 */
+.box-bd .message-box .other .content::before {
+    position: absolute;
+    top: 14px;
+    border: 6px solid transparent;
+    content: "";
+    left: -10px;
+    border-right-color: #fff;
+    border-right-width: 4px
+  }
+
+  .box-bd .message-box .my .content::after {
+    position: absolute;
+    left: 100%;
+    top: 14px;
+    border: 6px solid transparent;
+    content: "";
+    border-left-color: #b2e281;
+    border-left-width: 4px
+  }
+
+  /* 放置消息体的位置 */
+  .box-bd .message-box .my .avatar, .box-bd .message-box .my .content{
+    float: right;
+    margin-right: 10px;
+    background: #b2e281;
+  }
+
+  .box-bd .message-box .my::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  /* 昵称 */
+  .nickname {
+    position: absolute;
+    top: -10px;
+    color: #520c0c;
+    font-size: 12px;
+  }
+
+  /* 系统文字 */
+  .system {
+    text-align: center;
+    color: #b7b7b7;
+    font-size: 12px;
+  }
+
+  .system.leave {
+    color: #cc3322;
+  }
+
+/* 聊天的图片设置 */
+  .bubble_cont img {
+    max-width: 300px;
+  }
+
+  /* 群聊后面加一横杠 */
+  ul .user {
+    border-bottom: 1px solid #26292e;
+  }
+
+  .container .user-list .active{
+  background: #3a3f45;
+}
+
+.bubble_toName {
+    position: absolute;
+    font-size: 12px;
+    color: gray;
+    top: 0;
+    left: 100%;
+    width: 30px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 10px;
+  }
+
+  .my .bubble_toName {
+    left: -40px;
+  }
