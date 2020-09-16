@@ -1,0 +1,151 @@
+<!DOCTYPE html><!-- 告诉所有的浏览器，本文件是按照W3C的HTML5标准书写的，请用HTML5标准解析 -->
+<html lang="en">
+<!-- 告诉搜索引擎，我们网站是关于哪种语言内容的，en英文，zh中文，de德文 -->
+
+<head>
+    <!-- meta是head区的一个辅助性标签，提供有关页面的元信息（meta-information）,如针对搜索引擎和更新频度的描述与关键词
+        name描述网页提供信息的类型，如description(说明)keyword(关键字)，refresh(刷新)，
+
+        viewport（视口）移动设备（也可能是App的viewport）的屏幕上用来显示我们网页的那一块区域
+    -->
+    <meta charset="UTF-8">
+    <!-- 移动设备默认的viewport是layout viewport，我们需要的是ideal viewport。通过如下配置 
+    meta viewport 标签首先是由苹果公司在其safari浏览器中引入的，目的就是解决移动设备的viewport问题。
+    后来安卓以及各大浏览器厂商也都纷纷效仿，引入对meta viewport的支持，事实也证明这个东西还是非常有用的。
+    在苹果的规范中，meta viewport 有6个属性(暂且把content中的那些东西称为一个个属性和值)，如下：
+        width	        设置layout viewport  的宽度，为一个正整数，或字符串"width-device"
+        initial-scale	设置页面的初始缩放值，为一个数字，可以带小数,1.0=100%,原始大小;缩放是相对于 ideal viewport来进行缩放的
+        minimum-scale	允许用户的最小缩放值，为一个数字，可以带小数
+        maximum-scale	允许用户的最大缩放值，为一个数字，可以带小数
+        height	设置layout viewport  的高度，这个属性对我们并不重要，很少使用
+        user-scalable	是否允许用户进行缩放，值为"no"或"yes", no 代表不允许，yes代表允许
+        这些属性可以同时使用，也可以单独使用或混合使用，多个属性同时使用时用逗号隔开就行了。
+    此外，在安卓中还支持 target-densitydpi 这个私有属性，它表示目标设备的密度等级，作用是决定css中的1px代表多少物理像素
+        arget-densitydpi 	值可以为一个数值或 high-dpi 、 medium-dpi、 low-dpi、 device-dpi 这几个字符串中的一个
+    但如果 width 和 initial-scale=1 同时出现，并且还出现了冲突呢？
+        浏览器会取它们两个中较大的那个值
+    总结：要把当前的viewport宽度设为ideal viewport的宽度，既可以设置 width=device-width，也可以设置 initial-scale=1，
+        但这两者各有一个小缺陷，就是iphone、ipad以及IE 会横竖屏不分，通通以竖屏的ideal viewport宽度为准。
+        所以，最完美的写法应该是，两者都写上去，这样就 initial-scale=1 解决了 iphone、ipad的毛病，width=device-width则解决了IE的毛病：
+-->
+    <!--  name="keywords" content="HTML,ASP,PHP,SQL"
+    name值有:author\description\keywords\generator\revised\others
+        "keywords" 是一个经常被用到的名称。它为文档定义了一组关键字。某些搜索引擎在遇到这些关键字时，会用这些关键字对文档进行分类。
+-->
+    <!--  http-equiv="charset" content="iso-8859-1"   http-equiv="expires" content="31 Dec 2008"
+    指示服务器在发送实际的文档之前先在要传送给浏览器的 MIME 文档头部包含名称/值对。
+name值有:content-type\expires\refresh\set-cookie
+        这样发送到浏览器的头部就应该包含：
+            content-type: text/html
+            charset:iso-8859-1
+            expires:31 Dec 2008
+        当然，只有浏览器可以接受这些附加的头部字段，并能以适当的方式使用它们时，这些字段才有意义。
+-->
+    <!-- scheme 属性用于指定要用来翻译属性值的方案。此方案应该在由 <head> 标签的 profile 属性指定的概况文件中进行了定义 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS属性--position</title>
+
+
+    <style>
+        .absolute {
+            position: absolute;
+            left: 100px;
+            top: 300px;
+            border: 1px solid fuchsia;
+            color: fuchsia;
+        }
+
+        .fixed {
+            position: fixed;
+            left: 100px;
+            top: 300px;
+            border: 1px solid darkcyan;
+            color: darkcyan;
+        }
+
+        .relative {
+            position: relative;
+            left: 100px;/* 没有的话会默认居中 */
+            top: 300px;/* 没有的话会默认居中 */
+            border: 1px solid rgb(102, 14, 105);
+            color: rgb(102, 14, 105);
+        }
+
+        .static {
+            position: static;
+            left: 100px;
+            top: 100px;
+            border: 1px solid rgb(82, 8, 36);
+            color: rgb(82, 8, 36);
+        }
+
+        .sticky {
+            position: sticky;
+            left: 100px;
+            top: 100px;
+        }
+
+        .inherit {
+            position: inherit;
+            left: 100px;
+            top: 100px;
+        }
+
+        .initial {
+            position: initial;
+            left: 100px;
+            top: 100px;
+        }
+
+
+        body {
+            border: 1px solid blue;
+        }
+
+        html,body {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="border: 3px solid red">
+        <input type="text" placeholder="请输入您的姓名" style="color: rgb(18, 87, 92);border: 1px solid rgb(42, 42, 82);">
+    </div>
+    <div class="div1"  style="color: rgb(11, 90, 35);border: 3px solid rgb(38, 13, 180)">
+        <div class="static">static1默认值，没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）</div>
+        <div class="initial">initial设置该属性为默认值，</div>
+        <div class="inherit">inherit规定应该从父元素继承 position 属性的值。</div>
+        <div style="border: 3px solid red">
+            <!-- absolute: 可以将设置的元素摆放到容纳它的“容器”的任何位置，
+                这个容器要么是文档本身，要么是一个有着 fixed 或 absolute 属性的父元素。
+            这个元素在原始标记里出现的位置与它的显示位置无关，因为它的显示位置由 top、left、right 和 bottom 等属性决定，
+            absoleute绝对定位的意思是说，它的定位不受父元素中其他元素的影响；
+            relative相对定位，就是会受到父元素中其他元素影响
+     -->
+            <div class="absolute">absolute1绝对位置,相对于 static 定位以外的第一个父元素进行定位。<b>不影响当前页面的布局</b></div>
+            <div class="fixed">fixed固定位置,相对于<strong>浏览器窗口</strong>进行定位。<b>不影响当前页面的布局</b>
+                <div class="absolute">absolute2绝对位置,相对于 static 定位以外的第一个父元素进行定位。<b>不影响当前页面的布局</b></div>
+            </div>
+            <div class="relative">relative相对位置,相对于其正常位置进行定位。<b>影响当前页面的布局</b></div>
+            <div class="static">static2默认值，没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）</div>
+            <div class="sticky">sticky粘性定位，该定位基于用户滚动的位置。</div>
+            
+            
+
+        </div>
+        <h3 style="color: rebeccapurple;border: 1px solid rgb(42, 42, 82); width: 700px;">大家好我就是一个测试标题</h3>
+    </div>
+
+    <div style="border: 3px solid red">
+        <input type="text" placeholder="请输入您的姓名" style="color: rgb(18, 87, 92);border: 1px solid rgb(42, 42, 82);">
+    </div>
+   
+
+
+
+
+</body>
+
+</html>

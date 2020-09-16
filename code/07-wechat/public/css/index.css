@@ -15,7 +15,7 @@ html{
     height: 100%;
 }
 
-/* 3.标签选择器，设置body */
+/* 3.标签选择器，设置body，高宽100%，背景图 */
 body{
     width: 100%;
     height: 100%;
@@ -40,9 +40,10 @@ body::after{
     display: block;/* 显示 */
 }
 
+/* #################登录窗口定位、背景、阴影、圆角、高宽、padding、margin设置 EEEEEEEEEEEEE*/
 .login_box{
     position: relative;/* 指定一个元素（静态的，相对的，绝对或固定）的定位 */
-    top: 100px;
+    top: 200px;
     width: 300px;
     height: 330px;
     margin: 0px auto;
@@ -52,6 +53,7 @@ body::after{
     box-shadow: #999 0px 2px 10px;/* 向 div 元素添加阴影 */
 }
 
+/* 定义头像容器的宽高 */
 .login_box .avatar{
     width: 100%;
     height: 125px;
@@ -111,13 +113,18 @@ body::after{
   .invisible {
     display: none;
   }
+/* ################# 聊天窗口 EEEEEEEEEEEEE*/
+  .container{
+      position: relative;
+      top: 100px;
+  }
 
   /* 左侧用户列表 */
   .container .user-list {
     box-sizing: border-box;
     padding: 15px;
     float: left;
-    height: 100%;
+    height: 720px;
     width: 280px;
     background: #2e3238;
     color: #fff;
@@ -125,7 +132,7 @@ body::after{
   }
 
   .user-list ul {
-    height: 580px;
+    height: 515px;
     overflow: auto;
     /* scrollbar-width: 0px; */
   }
@@ -177,7 +184,7 @@ body::after{
     /* float: right; */
     display: inline-block;
     height: 100%;
-    width: calc(100% - 280px);
+    width: calc(100% - 680px);/* 宽度比100%的宽度少280px */
     min-width: 420px;
     background: #eeeeee;
     padding: 10px;
